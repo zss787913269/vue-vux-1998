@@ -9,7 +9,7 @@
                 <div class="cmt-title">第{{i+1}}楼 用户:匿名用户 发表时间:{{item.add_time|dateFormat}}</div>
                 <div class="cmt-body">{{item.content==="undefined"?"此用户很懒 啥都没说":item.content}}</div>
             </div>
-            
+              
              
         </div>
        <mt-button type="danger" size="large" plain @click="getMore">加载更多</mt-button>
