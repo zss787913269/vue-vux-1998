@@ -51,6 +51,7 @@ export default {
 <style lang="scss" scoped>
 .con{
   padding-top: 40px;
+	padding-bottom: 50px;
 	overflow-x: hidden;
 }
 
