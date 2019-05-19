@@ -12,12 +12,14 @@
         <!-- 内容区域 -->
         <div class="content" v-html="newsinfo.content"></div>
         <!-- 评论子组件区域 -->
+        <!--使用事件绑定向子组件中传递数据(传递简单的ID值) -->
         <comment-box :id='this.id'> </comment-box>
     </div>
 </template>
 
 <script>
 import { Toast } from 'mint-ui';
+// 导入评论子组件
 import comment from '../subcomponents/comment'
 export default {
     data(){
