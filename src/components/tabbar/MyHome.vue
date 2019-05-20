@@ -1,12 +1,6 @@
 <template>
     <div>
-        <mt-swipe :auto="4000">
-            <!-- 渲染录轮播图的数据到页面上 -->
-            <mt-swipe-item v-for="item in lbtList" :key="item.id">
-                <img :src="item.img" alt="">
-            </mt-swipe-item>
-            
-        </mt-swipe>
+       <swiper :lbtList="lbtList" :isfull="true"></swiper>
 <ul class="mui-table-view mui-grid-view mui-grid-9">
     <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
                             <router-link to="/home/newslist">
@@ -46,6 +40,7 @@
 
 <script>
 import {Toast} from 'mint-ui'
+import swiper from '../subcomponents/swiper'
 export default {
     data(){
         return {
@@ -69,6 +64,9 @@ export default {
             })
         }
     },
+    components:{
+        swiper
+    }
 }
 </script>
 

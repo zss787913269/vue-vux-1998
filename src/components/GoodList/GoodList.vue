@@ -1,7 +1,8 @@
 <template>
     <div class="goods-list">
 
-        <router-link :to="'/home/goodsinfo/'+item.id" class="goods-item" v-for="item in goodslist" :key="item.id" tag="div">
+        <!-- 标签跳转 -->
+        <!-- <router-link :to="'/home/goodsinfo/'+item.id" class="goods-item" v-for="item in goodslist" :key="item.id" tag="div">
             <img  :src="item.img_url" alt="">
             <h1 class="title">{{item.title}}</h1>
             <div class="info">
@@ -14,9 +15,26 @@
                     <span>剩{{item.stock_quantity}}件</span>
                 </p>
             </div>
-            
-        </router-link>
+       </router-link> -->
          
+         <!-- 方式2 使用编程式导航 -->
+           <div  @click="goDetail(item.id)" class="goods-item" v-for="item in goodslist" :key="item.id">
+            <img  :src="item.img_url" alt="">
+            <h1 class="title">{{item.title}}</h1>
+            <div class="info">
+                <p class="price">
+                    <span class="now">{{item.sell_price}}</span>
+                    <span class="old">{{item.market_price}}</span>
+                </p>
+                <p class="sell">
+                    <span>热卖中</span>
+                    <span>剩{{item.stock_quantity}}件</span>
+                </p>
+            </div>
+       </div>
+
+
+
          <mt-button type="danger" size='large' @click="getMore">加载更多</mt-button>
         
     </div>
@@ -48,6 +66,14 @@ export default {
             this.pageindex++
             this.getGoodsList();
 
+        },
+        goDetail(id){
+            // 区分 this.$route 和this.$router 这两个对象
+            // 其中：this.$route 是路由【参数对象，所有路由中的参数 params query 都属于它】
+            // 其中：this.$router 是一个路由导航对象 用它 可以方便的使用js代码 实现路由的前进后退 跳转到新的URL 地址
+
+            // 使用JS的形式 进行路由导航
+            this.$router.push('/home/goodsinfo/'+id)
         }
     }
     

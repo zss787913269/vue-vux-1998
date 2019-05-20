@@ -12,7 +12,8 @@ import PhotoInfo from '../components/photos/PhotoInfo.vue'
 import GoodList from '../components/GoodList/GoodList.vue'
 import LiuYan  from '../components/LiuYan/LiuYan.vue'
 import GoodsInfo from '../components/GoodList/GoodInfo.vue'
-
+import GoodsDesc from '../components/GoodList/GoodsDesc.vue'
+import GoodsComment from '../components/GoodList/GoodsComent.vue'
 
 Vue.use(Router)
 
@@ -29,7 +30,9 @@ export default new Router({
     { path:'/home/photoinfo/:id',component:PhotoInfo},
     { path:'/home/goodlist',component:GoodList},
     { path:'/home/liuyan',component:LiuYan},
-    { path:'/home/goodsinfo/:id',component:GoodsInfo}
+    { path:'/home/goodsinfo/:id',component:GoodsInfo},
+    { path:'/home/goodsdesc/:id',component:GoodsDesc,name:'goodsdesc'},
+    { path:'/home/goodscomment/:id',component:GoodsComment,name:'goodscomment'},
 
   ],
   linkActiveClass:'mui-active'
