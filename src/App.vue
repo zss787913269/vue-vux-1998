@@ -1,7 +1,11 @@
 <template>
   <div id="app" class="con">
     
-    <mt-header  type="danger" fixed title="张骚骚的Vue项目"></mt-header>
+    <mt-header  type="danger" fixed title="张骚骚的Vue项目">
+      <span slot="left" @click="goBack" v-show="flag">
+      <mt-button icon="back">返回</mt-button>
+      </span>
+    </mt-header>
     <!-- 顶部 Header区域 -->
 
 
@@ -29,7 +33,7 @@
 				<span class="mui-tab-label">会员</span>
 			</router-link>
 			<router-link class="mui-tab-item-zss" to="/shopcar">
-				<span class="mui-icon mui-icon-extra mui-icon-extra-cart"><span class="mui-badge" id="badge">0</span></span>
+				<span class="mui-icon mui-icon-extra mui-icon-extra-cart"><span class="mui-badge" id="badge">{{ this.$store.getters.getAllCount}}</span></span>
 				<span class="mui-tab-label">购物车</span>
 			</router-link>
 			<router-link class="mui-tab-item-zss" to="/search">
@@ -44,7 +48,30 @@
 
 <script>
 export default {
-  name: 'App'
+
+  data(){
+    return {
+      flag:false
+    }
+  },
+  methods:{
+    // 点击后退
+    goBack(){
+      this.$router.go(-1)
+    }
+  },
+  created(){
+    this.flag = this.$route.path === '/home'?false :true;
+  },
+  watch:{
+    "$route.path":function(newVal){
+      if(newVal === '/home'){
+        this.flag = false
+      }else{
+        this.flag = true;
+      }
+    }
+  }
 }
 </script>
 

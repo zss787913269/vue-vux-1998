@@ -104,6 +104,13 @@ export default {
         addToShopCar(){
             // 添加到购物车
             this.ballFlag = !this.ballFlag;
+            // 拼接出一个 要保存到store中 car数组里的 商品信息对象
+            var goodsinfo = {id:this.id,
+            count:this.selectedCount,
+            price:this.goodsinfo.sell_price,
+            selecetd:true
+            }
+            this.$store.commit("addToCar",goodsinfo)
         },
         beforeEnter(el){
             el.style.transform= "translate(0,0)";
