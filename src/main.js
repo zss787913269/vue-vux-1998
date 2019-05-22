@@ -10,9 +10,9 @@ var car = JSON.parse(localStorage.getItem('car')||"[]")
 var store = new Vuex.Store({
   state:{
     // 获取state里面的数据 this.$store.state.***
-    car:car //将购物车中 商品的数据 用一个数组存储起来，在car 数组中 存储一些商品的对象
+    car:car, //将购物车中 商品的数据 用一个数组存储起来，在car 数组中 存储一些商品的对象
     // 可以暂时将这个商品的对象 设置成这个样子｛ID：商品的ID ，conut:要购买的数量，price:商品的价格
-    // selected:false｝
+    // selected:false
 
   },
   mutations:{
@@ -41,7 +41,36 @@ var store = new Vuex.Store({
     },
     updateGoodsInfo(state,goodsinfo) {
       //修改购物车中商品的数量制
+      state.car.some(item=>{
+        if(item.id == goodsinfo.id){
+          item.count = parseInt(goodsinfo.count)
+          return true
+        }
+      })  
+      localStorage.setItem('car',JSON.stringify(state.car))
     },
+    removeFormCar(state,id){
+      // 根据ID  从store　中购物车中删除对应的那条商品数据
+      state.car.some((item,i)=>{
+        if(item.id == id){
+          state.car.splice(i,1)
+          return true;
+        }
+      })
+      // 将删除完毕后的 最新的数据保存到本地存储中
+      localStorage.setItem('car',JSON.stringify(state.car))
+    },
+    updateGoodsSelected(state,info){
+      state.car.some(item=>{
+        if(item.id == info.id){
+          item.selecetd = info.selecetd
+        }
+      })
+      localStorage.setItem('car',JSON.stringify(state.car))
+    
+
+    }
+    
   },
   getters:{
     // 相对于计算属性
@@ -51,6 +80,33 @@ var store = new Vuex.Store({
         c += item.count
       })
       return c
+    },
+    getGoodsCount(state){
+      var o = {}
+      state.car.forEach(item=>{
+        o[item.id] = item.count
+      })
+      return o;
+    },
+    getGoodsSelected(state){
+      var o = {}
+      state.car.forEach(item=>{
+        o[item.id] = item.selecetd
+      })
+      return o;
+    },
+    getGoodsCountAndAmount(state){
+      var o = {
+        count:0,//勾选的数量
+        amount:0//勾选的总价
+      }
+      state.car.forEach(item=>{
+        if(item.selecetd){
+          o.count += item.count
+          o.amount += item.price * item.count
+        }
+      })
+      return o;
     }
     // this.$store.getters.***
   }
