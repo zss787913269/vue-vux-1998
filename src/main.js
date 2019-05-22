@@ -129,10 +129,10 @@ axios.defaults.baseURL = 'http://www.liulongbin.top:3005';
 // Vue.component(SwipeItem.name, SwipeItem);
 // Vue.component(Button.name, Button);
 // Vue.use(Lazyload)
-import MintUI from 'mint-ui'
+import MintUI from "mint-ui"
 Vue.use(MintUI)
-import 'mint-ui/lib/style.min.css'
-import './assets/my-mint.scss'; //核心，多了这一行用上边的样式覆盖默认的primary颜色
+import "mint-ui/lib/style.min.css"
+import "./assets/my-mint.scss"; //核心，多了这一行用上边的样式覆盖默认的primary颜色
 
 // 导入mui样式
 import './lib/mui/css/mui.min.css'
